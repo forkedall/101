@@ -1,6 +1,5 @@
 local InputService = cloneref(game:GetService('UserInputService'));
 local TextService = cloneref(game:GetService('TextService'));
-local Teams = cloneref(game:GetService('Teams'));
 local Players = cloneref(game:GetService('Players'));
 local RunService = cloneref(game:GetService('RunService'))
 local TweenService = cloneref(game:GetService('TweenService'));
@@ -8,10 +7,7 @@ local RenderStepped = RunService.RenderStepped;
 local LocalPlayer = cloneref(Players.LocalPlayer);
 local Mouse = cloneref(LocalPlayer:GetMouse());
 
-local ProtectGui = protectgui or (syn and syn.protect_gui) or (function() end);
-
 local ScreenGui = Instance.new('ScreenGui');
-ProtectGui(ScreenGui);
 
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Global;
 ScreenGui.Parent = gethui();
@@ -75,18 +71,6 @@ local function GetPlayersString()
     table.sort(PlayerList, function(str1, str2) return str1 < str2 end);
 
     return PlayerList;
-end;
-
-local function GetTeamsString()
-    local TeamList = Teams:GetTeams();
-
-    for i = 1, #TeamList do
-        TeamList[i] = TeamList[i].Name;
-    end;
-
-    table.sort(TeamList, function(str1, str2) return str1 < str2 end);
-    
-    return TeamList;
 end;
 
 function Library:SafeCallback(f, ...)
@@ -2150,9 +2134,6 @@ do
     function Funcs:AddDropdown(Idx, Info)
         if Info.SpecialType == 'Player' then
             Info.Values = GetPlayersString();
-            Info.AllowNull = true;
-        elseif Info.SpecialType == 'Team' then
-            Info.Values = GetTeamsString();
             Info.AllowNull = true;
         end;
 
