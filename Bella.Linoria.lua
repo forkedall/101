@@ -3612,5 +3612,47 @@ end;
 Players.PlayerAdded:Connect(OnPlayerChange);
 Players.PlayerRemoving:Connect(OnPlayerChange);
 
+    local button = Library.Create("TextButton", {
+        Parent = gethui(),
+        Size = UDim2.new(0, 50, 0, 50),
+        Position = UDim2.new(0, 10, 0, 10),
+        Text = "≡",
+        TextScaled = true,
+        TextColor3 = Library.FontColor,
+        BackgroundColor3 = Library.MainColor,
+        BorderColor3 = Library.AccentColor,
+        BorderSizePixel = 2,
+        Font = Enum.Font.GothamBold,
+        TextStrokeColor3 = Library.AccentColor,
+        TextStrokeTransparency = 0,
+        BackgroundTransparency = 0,
+        Visible = true,
+        ZIndex = 999,
+    })
+    button.MouseButton1Click:Connect(function()
+        local window = Library.ScreenGui:FindFirstChild("Window")
+        if window then
+            window.Visible = not window.Visible
+        end
+    end)
+    local function updateButton()
+        if button and button.Parent then
+            button.BackgroundColor3 = Library.MainColor
+            button.TextColor3 = Library.FontColor
+            button.BorderColor3 = Library.AccentColor
+            button.TextStrokeColor3 = Library.AccentColor
+        end
+    end
+    if not Library.ThemeChanged then
+        Library.ThemeChanged = Instance.new("BindableEvent")
+        local oldSetColor = Library.SetColor
+        Library.SetColor = function(self, ColorTable)
+            oldSetColor(self, ColorTable)
+            Library.ThemeChanged:Fire()
+        end
+    end
+    Library.ThemeChanged.Event:Connect(updateButton)
+    updateButton()
+
 getgenv().Library = Library
 return Library
