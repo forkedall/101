@@ -3612,7 +3612,7 @@ end;
 Players.PlayerAdded:Connect(OnPlayerChange);
 Players.PlayerRemoving:Connect(OnPlayerChange);
 
-if UserInputService.TouchEnabled and not UserInputService.MouseEnabled then
+if InputService.TouchEnabled and not InputService.MouseEnabled then
     local button = Library.Create("TextButton", {
         Parent = gethui(),
         Size = UDim2.new(0, 50, 0, 50),
