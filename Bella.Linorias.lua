@@ -101,19 +101,14 @@ function Library:AttemptSave()
     end;
 end;
 
-function Library:Create(Class, Properties)
-    local _Instance = Class;
-
-    if type(Class) == 'string' then
-        _Instance = Instance.new(Class);
-    end;
-
+function Library:Create(ClassName, Properties)
+    Properties = Properties or {}
+    local Object = Instance.new(ClassName)
     for Property, Value in next, Properties do
-        _Instance[Property] = Value;
-    end;
-
-    return _Instance;
-end;
+        Object[Property] = Value
+    end
+    return Object
+end
 
 function Library:ApplyTextStroke(Inst)
     Inst.TextStrokeTransparency = 1;
