@@ -3612,7 +3612,6 @@ end;
 Players.PlayerAdded:Connect(OnPlayerChange);
 Players.PlayerRemoving:Connect(OnPlayerChange);
 
-if InputService.TouchEnabled and not InputService.MouseEnabled then
     local button = Library.Create("TextButton", {
         Parent = gethui(),
         Size = UDim2.new(0, 50, 0, 50),
@@ -3655,7 +3654,6 @@ if InputService.TouchEnabled and not InputService.MouseEnabled then
     Library.ThemeChanged.Event:Connect(updateButton)
     table.insert(Library.Elements, button)
     updateButton()
-end
 
 getgenv().Library = Library
 return Library
