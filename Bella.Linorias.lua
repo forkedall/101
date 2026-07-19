@@ -103,7 +103,12 @@ end;
 
 function Library:Create(ClassName, Properties)
     Properties = Properties or {}
-    local Object = Instance.new(ClassName)
+    local Object
+    if type(ClassName) == "string" then
+        Object = Instance.new(ClassName)
+    else
+        Object = ClassName
+    end
     for Property, Value in next, Properties do
         Object[Property] = Value
     end
