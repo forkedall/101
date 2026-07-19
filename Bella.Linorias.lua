@@ -3612,7 +3612,7 @@ end;
 Players.PlayerAdded:Connect(OnPlayerChange);
 Players.PlayerRemoving:Connect(OnPlayerChange);
 
-    local button = Library.Create("TextButton", {
+local button = Library:Create("TextButton", {
         Parent = gethui(),
         Size = UDim2.new(0, 50, 0, 50),
         Position = UDim2.new(0, 10, 0, 10),
@@ -3635,24 +3635,6 @@ Players.PlayerRemoving:Connect(OnPlayerChange);
             window.Visible = not window.Visible
         end
     end)
-    local function updateButton()
-        if button and button.Parent then
-            button.BackgroundColor3 = Library.MainColor
-            button.TextColor3 = Library.FontColor
-            button.BorderColor3 = Library.AccentColor
-            button.TextStrokeColor3 = Library.AccentColor
-        end
-    end
-    if not Library.ThemeChanged then
-        Library.ThemeChanged = Instance.new("BindableEvent")
-        local oldSetColor = Library.SetColor
-        Library.SetColor = function(self, ColorTable)
-            oldSetColor(self, ColorTable)
-            Library.ThemeChanged:Fire()
-        end
-    end
-    Library.ThemeChanged.Event:Connect(updateButton)
-    updateButton()
 
 getgenv().Library = Library
 return Library
