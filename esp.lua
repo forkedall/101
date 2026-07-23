@@ -127,12 +127,7 @@ do
         Id = "smallest_pixel-7.ttf",
         Font = game:HttpGet("https://raw.githubusercontent.com/sametexe001/luas/main/smallest_pixel-7.ttf")
     })
-    Fonts.ProggyClean = FontsRegister("ProggyClean", 400, "Normal", {
-        Id = "ProggyClean.ttf",
-        Font = game:HttpGet("https://github.com/i77lhm/storage/main/fonts/ProggyClean.ttf")
-    })
 
-    Syrniki.ProggyClean = Font.new(Fonts.ProggyClean, Enum.FontWeight.Regular, Enum.FontStyle.Normal)
     Syrniki.Tahoma = Font.new(Fonts.Tahoma, Enum.FontWeight.Regular, Enum.FontStyle.Normal)
     Syrniki.SmallestPixel = Font.new(Fonts.SmallestPixel, Enum.FontWeight.Regular, Enum.FontStyle.Normal)
 end
